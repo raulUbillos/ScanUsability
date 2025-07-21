@@ -1,0 +1,32 @@
+{
+  "name": "usability-scanner",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "test": "npm run test",
+    "start": "nodemon src/server.ts",
+    "start-local-db": "docker-compose up -d"
+  },
+  "author": "Raul",
+  "license": "ISC",
+  "description": "We develop a tool to scan the usability of a website using Puppeteer and Axe-core",
+  "devDependencies": {
+    "@types/express": "^5.0.3",
+    "@types/node": "^24.0.15",
+    "dotenv": "^17.2.0",
+    "eslint": "^9.31.0",
+    "express": "^5.1.0",
+    "install": "^0.13.0",
+    "nodemon": "^3.1.10",
+    "npm": "^10.9.3",
+    "prettier": "^3.6.2",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.8.3"
+  },
+  "dependencies": {
+    "@axe-core/puppeteer": "^4.10.2",
+    "mongoose": "^8.16.4",
+    "puppeteer": "^24.14.0",
+    "uuid": "^11.1.0"
+  }
+}
