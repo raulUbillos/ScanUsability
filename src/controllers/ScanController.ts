@@ -24,7 +24,7 @@ export const scan = async (req: Request<{}, {}, PostScanDTO>, res: Response, nex
            results.push(await scanNewPage(url, scanService));
         }
         scanService.closeBrowser();
-        ScanModel.insertMany(results);
+        await ScanModel.insertMany(results);
         res.status(200).json(results);
     }catch(err){
         console.log(`Error: ${err}`);
@@ -142,7 +142,7 @@ export const deleteScan = async (req:Request<DeleteScanUriParamsDTO,any,any>, re
 function mapScan(scanToMap:any): GetScanByIdResponseDTO{
     return scanToMap ? {
         id: scanToMap?.id || '',
-        csvLink:`${config.baseURL}:${config.port}/csvExport/${scanToMap?.id}`,
+        csvLink:`${config.baseURL}:${config.port}/scan/csvExport/${scanToMap?.id}`,
         error: scanToMap?.error || '',
         status: scanToMap?.status || '',
         url: scanToMap?.url || '',
