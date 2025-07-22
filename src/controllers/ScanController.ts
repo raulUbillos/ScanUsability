@@ -3,6 +3,7 @@ import { ScanDTO } from "../dto/ScanDTO";
 import { AxeCoreSingleton } from "../utils/AxeCoreSingleton";
 import {v7} from 'uuid'
 import { ScanModel } from "../models/Scan";
+import { Status } from "../enums/Status.enum";
 
 export const scan = async (req: Request<{}, {}, ScanDTO>, res: Response, next: NextFunction  ) => {
     console.log("Scanning...");
@@ -17,8 +18,9 @@ export const scan = async (req: Request<{}, {}, ScanDTO>, res: Response, next: N
             const scan = await scanService.scan(url);
             results.push(
                 {
-                    id: v7(),
+                    _id: v7(),
                     url: url,
+                    status: scan.violations.length ? Status.VIOLATIONS_PENDING: Status.FULL_COMPLAINING,
                     violations: scan.violations
                 }
             );
@@ -31,3 +33,32 @@ export const scan = async (req: Request<{}, {}, ScanDTO>, res: Response, next: N
         next(err);
     }
 };
+
+
+export const updateScan = async(req:Request<{id:String},{},{}>, res:Response, next:NextFunction) => {
+    const {id} = req.params
+    console.log(`Updating Scan ${id}`);
+
+    try{
+        const scanToUpdate = await ScanModel.findById(id as String);
+
+        if(!scanToUpdate){
+            throw new Error("Scan not found");
+        }
+
+        const scanService = await AxeCoreSingleton.getInstance();
+        const scan = await scanService.scan(scanToUpdate.url as string);
+
+        if(scan.violations.length){
+            scanToUpdate.status = Status.VIOLATIONS_PENDING;
+        }else{
+            scanToUpdate.status = scanToUpdate.status == Status.VIOLATIONS_PENDING ? Status.FIXED : scanToUpdate.status;
+        }
+
+        await scanToUpdate.save();
+        res.status(200).json({});
+    }catch(err){
+        console.log(`Error: ${err}`);
+        next(err);
+    }
+}

@@ -3,7 +3,7 @@ import { AxePuppeteer } from "@axe-core/puppeteer";
 import puppeteer, { Browser, Page } from "puppeteer";
 
 export class AxeCoreService {
-    private browser: Browser;
+    public browser: Browser;
 
     constructor(browser: Browser) {
         this.browser = browser;

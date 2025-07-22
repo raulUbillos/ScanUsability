@@ -1,8 +1,9 @@
 import {Schema, model} from 'mongoose';
 
 const scanSchema = new Schema({
-    id: String,
+    _id: String,
     url: String,
+    status: String,
     violations: Object
 });
 
