@@ -27,6 +27,7 @@
   },
   "dependencies": {
     "@axe-core/puppeteer": "^4.10.2",
+    "csv-stringify": "^6.6.0",
     "mongoose": "^8.16.4",
     "puppeteer": "^24.14.0",
     "uuid": "^11.1.0"

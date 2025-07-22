@@ -1,13 +1,28 @@
-import {Schema, model} from 'mongoose';
+import {Schema, model, ObjectId} from 'mongoose';
 
 
 
 const scanSchema = new Schema({
-    _id: String,
-    url: String,
-    status: String,
-    violations: Object,
-    error: String
+    id: {
+        type:String,
+        required:true
+    },
+    url: {
+        type:String,
+        required:true
+    },
+    status: {
+        type:String,
+        required:true
+    },
+    violations:  {
+        type:Object,
+        required:false
+    },
+    error:  {
+        type:String,
+        required:false
+    }
 });
 
-export const ScanModel = model('Scan', scanSchema);
+export const ScanModel = model('scans', scanSchema);
