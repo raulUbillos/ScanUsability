@@ -1,0 +1,225 @@
+{
+  "info": {
+    "name": "ScanController API",
+    "_postman_id": "b1e2c3d4-5678-1234-9abc-def012345678",
+    "description": "Collection for ScanController endpoints",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "Create Scan(s)",
+      "request": {
+        "method": "POST",
+        "header": [{ "key": "Content-Type", "value": "application/json" }],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"urls\": [\"https://example.com\", \"https://another.com\"]\n}"
+        },
+        "url": {
+          "raw": "{{baseUrl}}/scan",
+          "host": ["{{baseUrl}}"],
+          "path": ["scan"]
+        }
+      },
+      "response": [
+        {
+          "name": "Success",
+          "originalRequest": {},
+          "status": "OK",
+          "code": 200,
+          "_postman_previewlanguage": "json",
+          "header": [
+            { "key": "Content-Type", "value": "application/json" }
+          ],
+          "body": "[\n  {\n    \"id\": \"uuid-1\",\n    \"url\": \"https://example.com\",\n    \"status\": \"FULL_COMPLAINING\",\n    \"violations\": []\n  },\n  {\n    \"id\": \"uuid-2\",\n    \"url\": \"https://another.com\",\n    \"status\": \"FULL_COMPLAINING\",\n    \"violations\": []\n  }\n]"
+        }
+      ]
+    },
+    {
+      "name": "Get All Scans",
+      "request": {
+        "method": "GET",
+        "url": {
+          "raw": "{{baseUrl}}/scan/list",
+          "host": ["{{baseUrl}}"],
+          "path": ["scan", "list"]
+        }
+      },
+      "response": [
+        {
+          "name": "Success",
+          "originalRequest": {},
+          "status": "OK",
+          "code": 200,
+          "_postman_previewlanguage": "json",
+          "header": [
+            { "key": "Content-Type", "value": "application/json" }
+          ],
+          "body": "[\n  {\n    \"id\": \"uuid-1\",\n    \"url\": \"https://example.com\",\n    \"status\": \"FULL_COMPLAINING\",\n    \"violations\": [],\n    \"csvLink\": \"http://localhost:3000/scan/csvExport/uuid-1\"\n  }\n]"
+        }
+      ]
+    },
+    {
+      "name": "Get Scan By ID",
+      "request": {
+        "method": "GET",
+        "url": {
+          "raw": "{{baseUrl}}/scan/{{scanId}}",
+          "host": ["{{baseUrl}}"],
+          "path": ["scan", "{{scanId}}"]
+        }
+      },
+      "response": [
+        {
+          "name": "Success",
+          "originalRequest": {},
+          "status": "OK",
+          "code": 200,
+          "_postman_previewlanguage": "json",
+          "header": [
+            { "key": "Content-Type", "value": "application/json" }
+          ],
+          "body": "{\n  \"id\": \"uuid-1\",\n  \"url\": \"https://example.com\",\n  \"status\": \"FULL_COMPLAINING\",\n  \"violations\": [],\n  \"csvLink\": \"http://localhost:3000/scan/csvExport/uuid-1\"\n}"
+        },
+        {
+          "name": "Not Found",
+          "originalRequest": {},
+          "status": "Not Found",
+          "code": 404,
+          "_postman_previewlanguage": "json",
+          "header": [
+            { "key": "Content-Type", "value": "application/json" }
+          ],
+          "body": "{\n  \"message\": \"Scan not found\"\n}"
+        }
+      ]
+    },
+    {
+      "name": "Update Scan",
+      "request": {
+        "method": "PUT",
+        "header": [{ "key": "Content-Type", "value": "application/json" }],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"url\": \"https://updated.com\"\n}"
+        },
+        "url": {
+          "raw": "{{baseUrl}}/scan/{{scanId}}",
+          "host": ["{{baseUrl}}"],
+          "path": ["scan", "{{scanId}}"]
+        }
+      },
+      "response": [
+        {
+          "name": "Success",
+          "originalRequest": {},
+          "status": "OK",
+          "code": 200,
+          "_postman_previewlanguage": "json",
+          "header": [
+            { "key": "Content-Type", "value": "application/json" }
+          ],
+          "body": "{\n  \"id\": \"uuid-1\",\n  \"url\": \"https://updated.com\",\n  \"status\": \"FULL_COMPLAINING\",\n  \"violations\": [],\n  \"csvLink\": \"http://localhost:3000/scan/csvExport/uuid-1\"\n}"
+        },
+        {
+          "name": "Not Found",
+          "originalRequest": {},
+          "status": "Not Found",
+          "code": 404,
+          "_postman_previewlanguage": "json",
+          "header": [
+            { "key": "Content-Type", "value": "application/json" }
+          ],
+          "body": "{\n  \"message\": \"Scan not found\"\n}"
+        }
+      ]
+    },
+    {
+      "name": "Delete Scan",
+      "request": {
+        "method": "DELETE",
+        "url": {
+          "raw": "{{baseUrl}}/scan/{{scanId}}",
+          "host": ["{{baseUrl}}"],
+          "path": ["scan", "{{scanId}}"]
+        }
+      },
+      "response": [
+        {
+          "name": "Success",
+          "originalRequest": {},
+          "status": "OK",
+          "code": 200,
+          "_postman_previewlanguage": "json",
+          "header": [
+            { "key": "Content-Type", "value": "application/json" }
+          ],
+          "body": "{\n  \"id\": \"uuid-1\",\n  \"url\": \"https://example.com\",\n  \"status\": \"FULL_COMPLAINING\",\n  \"violations\": [],\n  \"csvLink\": \"http://localhost:3000/scan/csvExport/uuid-1\"\n}"
+        },
+        {
+          "name": "Not Found",
+          "originalRequest": {},
+          "status": "Not Found",
+          "code": 404,
+          "_postman_previewlanguage": "json",
+          "header": [
+            { "key": "Content-Type", "value": "application/json" }
+          ],
+          "body": "{}"
+        }
+      ]
+    },
+    {
+      "name": "Export CSV (all scans)",
+      "request": {
+        "method": "GET",
+        "url": {
+          "raw": "{{baseUrl}}/scan/csvExport",
+          "host": ["{{baseUrl}}"],
+          "path": ["scan", "csvExport"]
+        }
+      },
+      "response": [
+        {
+          "name": "Success",
+          "originalRequest": {},
+          "status": "OK",
+          "code": 200,
+          "_postman_previewlanguage": "csv",
+          "header": [
+            { "key": "Content-Type", "value": "text/csv" }
+          ],
+          "body": "url,error,status,violation,help\nhttps://example.com,,,\n"
+        }
+      ]
+    },
+    {
+      "name": "Export CSV (by scanId)",
+      "request": {
+        "method": "GET",
+        "url": {
+          "raw": "{{baseUrl}}/scan/csvExport/{{scanId}}",
+          "host": ["{{baseUrl}}"],
+          "path": ["scan", "csvExport", "{{scanId}}"]
+        }
+      },
+      "response": [
+        {
+          "name": "Success",
+          "originalRequest": {},
+          "status": "OK",
+          "code": 200,
+          "_postman_previewlanguage": "csv",
+          "header": [
+            { "key": "Content-Type", "value": "text/csv" }
+          ],
+          "body": "url,error,status,violation,help\nhttps://example.com,,,\n"
+        }
+      ]
+    }
+  ],
+  "variable": [
+    { "key": "baseUrl", "value": "http://localhost:3000" },
+    { "key": "scanId", "value": "replace-with-scan-id" }
+  ]
+} 

@@ -2,7 +2,6 @@ import * as ScanController from '../../controllers/ScanController';
 import { ScanModel } from '../../models/Scan';
 import { Status } from '../../enums/Status.enum';
 import { AxeCoreSingleton } from '../../utils/AxeCoreSingleton';
-import { config } from '../../config/config';
 import { Request, Response, NextFunction } from 'express';
 import { jest, describe, beforeEach, it, expect } from '@jest/globals';
 
