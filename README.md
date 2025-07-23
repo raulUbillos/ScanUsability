@@ -12,19 +12,13 @@
 
 ## Setup & Run
 
-1. **Clone the repository:**
-   ```sh
-   git clone <your-repo-url>
-   cd <your-repo-directory>
-   ```
-
-2. **Install dependencies:**
+1. **Install dependencies:**
    ```sh
    npm install
    ```
 
 3. **Configure environment variables:**
-   - Copy `.env.example` to `.env` and fill in the required values (MongoDB connection string, port, etc).
+   - Fill .env in the required values (MongoDB connection string, port, etc).
 
 4. **Start Database
    ```sh
@@ -50,11 +44,6 @@
   or, for a specific test file:
   ```sh
   npx jest src/test/controllers/ScanController.spec.ts
-  ```
-
-- **Test coverage:**
-  ```sh
-  npm run test:coverage
   ```
 
 ---
