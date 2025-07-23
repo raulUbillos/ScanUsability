@@ -78,7 +78,6 @@
 
 ## Time Spent
 
-> _Replace this with your actual time spent._
 - **Total:** 6 hours
 
 ---
